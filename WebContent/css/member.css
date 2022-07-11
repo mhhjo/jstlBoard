@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+.register_wrap, .login_wrap, .account_wrap{
+	margin-top: 80px;
+	margin-bottom:125px;
+}
+.register_wrap h2, .login_wrap h2, .account_wrap h2{
+	background-color:#343a40;
+	color:white;
+	text-align:center;
+	font-size:25px;
+	font-weight:bold;
+	padding:15px;
+}
+
+.register_wrap .panel, .login_wrap .panel{
+	margin-top:25px;
+}
+
+.account_wrap .panel{
+	margin-top:35px;
+}
+
+.register_wrap h3, .login_wrap h3{
+	font-size:18px;
+	font-weight:bold;
+	margin-bottom:15px;
+}
+
+.register_wrap small, .login_wrap small{
+	font-size:12px;
+}
+
+.login_sub{
+	margin-top:25px;
+}
+
+.login_sub a{
+	padding:0 15px;
+	color:#212529;
+}
+
+.btn-square-md {
+	display:block;
+	width: 250px !important;
+	max-height: 100% !important;
+	height: 70px !important;
+	text-align: center;
+	padding: 0px;
+	line-height:70px;
+	margin: 35px auto 15px auto;
+}
+
+
+.form_wrap{
+	width:400px;
+	margin:0 auto;
+}
