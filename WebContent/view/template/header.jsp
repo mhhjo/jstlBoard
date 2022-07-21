@@ -14,9 +14,12 @@
     </button>
     <div class="navbar-collapse collapse justify-content-stretch" id="navbar7">
         <ul class="navbar-nav ml-auto">
+        	<li class="nav-item">
+        		<a class="nav-link" href="<%=request.getContextPath()%>/?subpage=home">Home</a>
+        	</li>
             <li class="nav-item">
                 <form method="get" action="main">
-               			<input class="nav-link nav_btn" type="submit" value="Home">
+               			<input class="nav-link nav_btn" type="submit" value="List">
                	</form>
             </li>
             <li class="nav-item">

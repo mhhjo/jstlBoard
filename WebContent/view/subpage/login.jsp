@@ -26,11 +26,8 @@
 				    			
 				    			<input type="submit" value="로그인" class="btn btn-dark btn-block">
 				    			<div class="text-center login_sub">
-				    				<a href="<%=request.getContextPath() %>/?subpage=register">
+				    				<a class="underline" href="<%=request.getContextPath() %>/?subpage=register">
 				    					회원가입
-				    				</a>
-				    				<a href="#">
-				    					아이디 찾기
 				    				</a>
 				    			</div>			    		
 				    		</form>

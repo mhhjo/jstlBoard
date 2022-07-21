@@ -35,13 +35,16 @@ public class BoardDAO extends DBConnPool {
 				+ "		SELECT tb.*, rownum rNum FROM ( "
 				+ "		SELECT * FROM img_board ";
 		if(map.get("searchWord") != null) {
-			query += " WHERE "+map.get("searchField")+""
-					+ " LIKE '%"+map.get("searchWord")+"%' ";
+			System.out.println("searchWord not null!");
+			query+=" where "+map.get("searchField")+""
+					+ " like '%"+map.get("searchWord")+"%' ";
 		}
 		query += "		ORDER BY no DESC "
 				+ "		) tb "
 				+ " ) "
 				+ " WHERE rNum BETWEEN ? AND ?";
+		System.out.println(map);
+		System.out.println(query);
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, map.get("start").toString());
@@ -132,6 +135,68 @@ public class BoardDAO extends DBConnPool {
 		}
 	}
 	
+	// 비밀번호 체크
+	public boolean confirmPassword(String clientPassword, String no) {
+		boolean isCorr = true;
+		try {
+			String query = "SELECT COUNT(*) FROM client c INNER JOIN img_board ib "
+					+ " ON c.clientId = ib.clientId WHERE clientPassword=? AND no=?";
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, clientPassword);
+			pstmt.setString(2, no);
+			rs = pstmt.executeQuery();
+			rs.next();
+			
+			if(rs.getInt(1) == 0) {
+				// totalCount = rs.getInt(1);
+				isCorr = false;
+			}
+		}catch(Exception e){
+			isCorr = false;
+			System.out.println("오류 발생");
+			e.printStackTrace();
+		}
+		return isCorr;
+	}
 	
+	// 저장한 일련번호의 게시물 삭제
+	public int deletePost(String no) {
+		int result = 0;
+		try {
+			String query = "DELETE FROM img_board WHERE no = ?";
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, no);
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			System.out.println("게시물 삭제 중 예외 발생!");
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	// 게시글 내용 갱신
+	public int updatePost(BoardDTO boardDTO) {
+		int result = 0;
+		try {
+			String query = "UPDATE img_board"
+					+ " SET title = ?, content = ?, ofile = ?, sfile = ?"
+					+ " WHERE no = ?";
+			pstmt =con.prepareStatement(query);
+			pstmt.setString(1, boardDTO.getTitle());
+			pstmt.setString(2, boardDTO.getContent());
+			pstmt.setString(3, boardDTO.getOfile());
+			pstmt.setString(4, boardDTO.getSfile());
+			pstmt.setString(5, boardDTO.getNo());
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			System.out.println("게시물 수정 중 예외 발생!");
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 
 }

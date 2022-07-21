@@ -5,7 +5,7 @@
 	margin-bottom:125px;
 }
 .register_wrap h2, .login_wrap h2, .account_wrap h2{
-	background-color:#343a40;
+	background-color:#212529;
 	color:white;
 	text-align:center;
 	font-size:25px;
@@ -38,6 +38,10 @@
 .login_sub a{
 	padding:0 15px;
 	color:#212529;
+}
+
+.underline:hover{
+	text-decoration:underline;
 }
 
 .btn-square-md {

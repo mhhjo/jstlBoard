@@ -1,26 +1,25 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import FileUtil.FileUtil;
 
 /**
- * Servlet implementation class LogoutController
+ * Servlet implementation class DownloadController
  */
-@WebServlet("/logout")
-public class LogoutController extends HttpServlet {
+@WebServlet("/download")
+public class DownloadController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutController() {
+    public DownloadController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,8 +28,12 @@ public class LogoutController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/login.jsp").forward(request, response);
+		String ofile = request.getParameter("ofile");
+		String sfile = request.getParameter("sfile");
+		String no = request.getParameter("no");
+		
+		FileUtil.download(request, response, "/Uploads", sfile, ofile); // 파일 다운로드
+		
 	}
 
 	/**
@@ -38,17 +41,7 @@ public class LogoutController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession(false);
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		if(session != null) {
-			session.invalidate();
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('로그아웃에 성공하였습니다!')");
-			script.println("location.href='/MVC_Board/main?'");
-			script.println("</script>");
-		}
+		doGet(request, response);
 	}
 
 }

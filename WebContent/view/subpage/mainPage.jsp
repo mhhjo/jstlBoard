@@ -5,7 +5,7 @@
 
 <div class="container">
 	<h2>목록보기</h2>
-	<form method="get" class="search">
+	<form method="get" class="search" action="main">
 		<div style="text-align:center;">
 			<select name="searchField" class="custom-select" style="width:25%; display:inline-block;">
 				<option value="title">제목</option>
@@ -37,7 +37,7 @@
 			<c:forEach items="${boardLists}" var="row" varStatus="loop">
 			<tr align="center">
 				<td style="vertical-align:middle;">
-				${map.totalCount-(((map.pageNum-1)*map.pageSize)+loop.index)}
+					${map.totalCount-(((map.pageNum-1)*map.pageSize)+loop.index)}
 				</td>
 				<td style="vertical-align:middle;">
 					<a href="view?no=${row.no}">${row.title}</a>
@@ -46,38 +46,38 @@
 				<td style="vertical-align:middle;">${row.visitcount}</td>
 				<td style="vertical-align:middle;">${row.postdate}</td>
 				<td>
-				<%-- <c:if test="${not empty row.ofile}">
-					<a href="/mvcboard/download.do?ofile=${row.ofile}&sfile=${row.sfile}&idx=${row.idx}">
-						<c:set var="filename" value="${ row.ofile }" />
-						<c:set var="fileNm" value="${ fn:toLowerCase(filename) }" />
-						<c:forTokens var="token" items="${ fileNm }" delims="." varStatus="status">
-							<c:if test="${ status.last }">
-								<c:choose>
-									html 파일
-									<c:when test="${token eq 'html' }">
-										<img src="/img/html_icon.png" alt="${ filename }" />
-									</c:when>
-									img 파일
-									<c:when test="${token eq 'png' || 'jpg' || 'jpeg' || 'gif' || 'bmp' }">
- 										<img src="/img/image_icon.png" alt="${ filename }" />
-									</c:when>
-									pdf 파일
-									<c:when test="${token eq 'pdf' }">
-										<img src="/img/pdf_icon.png" alt="${ filename }" />
-									</c:when>
-									xml 파일
-									<c:when test="${token eq 'xml' }">
-										<img src="/img/xml_icon.png" alt="${ filename }" />
-									</c:when>
-									zip 파일
-									<c:when test="${token eq 'zip' }">
-										<img src="/img/zip_icon.png" alt="${ filename }" />
-									</c:when>
-								</c:choose>
-							</c:if>
-						</c:forTokens>
-					</a>
-				</c:if> --%>
+					<c:if test="${not empty row.ofile }">
+						<a class="down_icon" href="/MVC_Board/download?ofile=${ row.ofile }&sfile=${ row.sfile }&no=${ row.no }">
+							<c:set var="filename" value="${ row.ofile }" />
+							<c:set var="fileNm" value="${ fn:toLowerCase(filename) }" />
+							<c:forTokens var="token" items="${ fileNm }" delims="." varStatus="status" >
+								<c:if test="${ status.last }">
+									<c:choose>
+										<%-- html 파일 --%>
+										<c:when test="${ token eq 'html' }">
+											<img src="img/html_icon.png" alt="${ filename }" />
+										</c:when>
+										<%-- img 파일 --%>
+										<c:when test="${ token eq 'jpg' || token eq 'jpeg' || token eq 'png' || token eq 'gif' || token eq 'bmp' }">
+											<img src="img/img_icon.png" alt="${ filename }" />
+										</c:when>
+										<%-- pdf 파일 --%>
+										<c:when test="${ token eq 'pdf' }">
+											<img src="img/pdf_icon.png" alt="${ filename }" />
+										</c:when>
+										<%-- xml 파일 --%>
+										<c:when test="${ token eq 'xml' }">
+											<img src="img/xml_icon.png" alt="${ filename }" />
+										</c:when>
+										<%-- zip 파일 --%>
+										<c:when test="${ token eq 'zip' }">
+											<img src="img/zip_icon.png" alt="${ filename }" />
+										</c:when>
+									</c:choose>
+								</c:if>
+							</c:forTokens>
+						</a>					
+					</c:if>
 				</td>
 			</tr>	
 			</c:forEach>

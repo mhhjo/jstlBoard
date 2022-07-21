@@ -41,6 +41,32 @@ img{
 	padding:50px 0;
 }
 
+/* home */
+
+.home h1{
+	background-color:#212529;
+	padding:15px;
+	color:#fff;
+	text-align:center;
+	font-weight:700;	
+}
+.home p{
+	margin-top:25px;
+	text-align:center;
+}
+
+.home p:before{
+	margin-right:10px;
+	content:"-";
+	display:inline;
+}
+
+.home p:after{
+	margin-left:10px;
+	content:"-";
+	display:inline;
+}
+
 /* mainPage  */
 .content{
 	min-height:450px;
@@ -50,6 +76,19 @@ img{
 .search{
 	margin-bottom:20px;
 }
+
+.down_icon img{
+	width:32px;
+	height:32px;
+}
+
+
+/* view */
+.view .bg-color1{
+	background-color:#212529;
+	color:#fff;
+}
+
 
 /* footer */
 .footer{

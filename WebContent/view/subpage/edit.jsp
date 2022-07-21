@@ -18,26 +18,30 @@
 	}
 </script>
 	<div class="container">	
-	<h2>글쓰기</h2>
-	<form method="post" action="write" enctype="multipart/form-data" onsubmit="return validateForm(this);">
+	<h2>글수정</h2>
+	<form name="form" method="post" action="edit" enctype="multipart/form-data" onsubmit="return validateForm(this);">
+		<input type="hidden" name="no" value="${ boardDTO.no }" />
+		<input type="hidden" name="prevOfile" value="${ boardDTO.ofile }" />
+		<input type="hidden" name="prevSfile" value="${ boardDTO.sfile }" />
+		
 		<table class="table" style="width:90%">
 			<tr>
 				<td class="bg-color1">작성자</td>
 				<td>
-					<input type="text" name="clientid" class="form-control" style="width:150px;" value="${clientDTO.clientId}" readonly>					
+					<input type="text" name="clientid" class="form-control" style="width:150px;" value="${ boardDTO.clientId }" readonly>					
 				</td>
 			</tr>
 			<tr>
 				<td class="bg-color1">제목</td>
 				<td>
-					<input type="text" name="title" class="form-control" style="width:90%;">					
+					<input type="text" name="title" class="form-control" style="width:90%;" value="${ boardDTO.title }">					
 				</td>
 			</tr>
 			<tr>
 				<td class="bg-color1">내용</td>
 				<td>
 					<textarea name="content" class="form-control" rows="15"
-					style="width:90%; height:200px; resize:none;"></textarea>
+					style="width:90%; height:200px; resize:none;">${ boardDTO.content }</textarea>
 				</td>
 			</tr>
 			<tr>
@@ -46,12 +50,6 @@
 					<input type="file" name="ofile" class="form-control">		
 				</td>
 			</tr>
-			<!-- <tr>
-				<td class="bg-color1">비밀번호</td>
-				<td>
-					<input type="password" name="pass" class="form-control" style="width:100px;">		
-				</td>
-			</tr> -->
 			<tr>
 				<td colspan="2" align="center">
 					<button class="btn btn-dark">작성완료</button>

@@ -18,7 +18,7 @@
 				    		</form>
 					    		<a href="<%=request.getContextPath() %>/?subpage=delete" class="btn btn-dark btn-square-md">
 					    			회원탈퇴
-					    		</a>>				    		
+					    		</a>			    		
 				    		</div>
 		    		</div>
 		   		</div>

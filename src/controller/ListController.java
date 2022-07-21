@@ -38,14 +38,19 @@ public class ListController extends HttpServlet {
 		Map<String,Object> map=new HashMap<String, Object>();
 		String searchField=request.getParameter("searchField");
 		String searchWord=request.getParameter("searchWord");
+		System.out.println("searchWord = "+searchWord);
 		if(searchWord!=null) {
+			System.out.println("searchWord not null!");
 			map.put("searchField", searchField);
-			map.put("searchWorld", searchWord);
+			map.put("searchWord", searchWord);
 		}
 		int totalCount=boardDAO.selectCount(map);
 		/********************** 페이징처리 계산 *********************************/
 		
-		int pageSize=10;
+		// 한 페이지 당 최대 표현 게시글 수
+		int pageSize=5;
+		
+		// 페이지 넘버 최대 표현 수
 		int blockPage=5;
 		
 		//현재페이지 수집
@@ -55,8 +60,8 @@ public class ListController extends HttpServlet {
 			pageNum=Integer.parseInt(pageTemp);
 		}
 		//paging query에서 사용할 start, end값 계산
-		int start=(pageNum-1)*pageSize+1;
-		int end=pageNum*pageSize;
+		int start = (pageNum-1)*pageSize+1;
+		int end = pageNum*pageSize;
 		map.put("start",start);
 		map.put("end",end);
 		/********************** 페이징처리 계산.끝 *********************************/
