@@ -55,7 +55,7 @@ public class DeleteController extends HttpServlet {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('회원탈퇴에 성공하였습니다.')");
-			script.println("location.href='/MVC_Board/?subpage=mainPage'");
+			script.println("location.href='/MVC_Board/main?'");
 			script.println("</script>");
 			session.invalidate();
 			ClientDAO.getInstance().deleteClient(clientId);

@@ -44,7 +44,8 @@ public class EditController extends HttpServlet {
 		
 		//// 초기화 매개 변수로 설정한 첨부 파일 최대 용량 확인
 		ServletContext application = getServletContext();
-		int maxPostSize = Integer.parseInt(application.getInitParameter("maxPostSize"));
+//		int maxPostSize = Integer.parseInt(application.getInitParameter("maxPostSize"));
+		int maxPostSize=1024*1024*10;//10MB
 		
 		//// 파일 업로드
 		MultipartRequest mr = FileUtil.uploadFile(req, saveDirectory, maxPostSize);
@@ -110,9 +111,9 @@ public class EditController extends HttpServlet {
 		//// 성공 or 실패
 		if(result == 1) { // 수정 성공
 			session.removeAttribute("clientPassword");
-			resp.sendRedirect("");
+			resp.sendRedirect("/MVC_Board/view?no="+no);
 		}else { // 수정 실패
-			JSFunction.alertLocation(resp, "비밀번호를 다시 확인해 주세요", "MVC_Board/view?no="+no);
+			JSFunction.alertLocation(resp, "비밀번호를 다시 확인해 주세요", "/MVC_Board/view?no="+no);
 		}
 	}
 }
